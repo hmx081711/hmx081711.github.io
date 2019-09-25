@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/9 | Dorothy Wang的博客</title>
+  <title>Mybatis的基本配置及使用 | Dorothy Wang的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Dorothy Wang的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2018/09/index.html">
+  <meta name="description" content="Mybatis的入门使用 导入Maven依赖12345&amp;lt;dependence&amp;gt;    &amp;lt;groupId&amp;gt;org.mybatis&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;mybatis&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;x.x.x&amp;lt;/version&amp;gt;&amp;lt;/dependence&amp;gt;">
+<meta name="keywords" content="mybatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis的基本配置及使用">
+<meta property="og:url" content="http://yoursite.com/2018/09/21/Mybatis的基本配置及使用/index.html">
 <meta property="og:site_name" content="Dorothy Wang的博客">
+<meta property="og:description" content="Mybatis的入门使用 导入Maven依赖12345&amp;lt;dependence&amp;gt;    &amp;lt;groupId&amp;gt;org.mybatis&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;mybatis&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;x.x.x&amp;lt;/version&amp;gt;&amp;lt;/dependence&amp;gt;">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-25T14:15:52.049Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dorothy Wang的博客">
+<meta name="twitter:title" content="Mybatis的基本配置及使用">
+<meta name="twitter:description" content="Mybatis的入门使用 导入Maven依赖12345&amp;lt;dependence&amp;gt;    &amp;lt;groupId&amp;gt;org.mybatis&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;mybatis&amp;lt;/artifactId&amp;gt;    &amp;lt;version&amp;gt;x.x.x&amp;lt;/version&amp;gt;&amp;lt;/dependence&amp;gt;">
   
     <link rel="alternative" href="/atom.xml" title="Dorothy Wang的博客" type="application/atom+xml">
   
@@ -160,36 +165,113 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Mybatis的基本配置及使用" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/21/Mybatis的基本配置及使用/" class="archive-article-date">
-  	<time datetime="2018-09-21T01:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/21/Mybatis的基本配置及使用/">Mybatis的基本配置及使用</a>
+    <h1 class="article-title" itemprop="name">
+      Mybatis的基本配置及使用
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/09/21/Mybatis的基本配置及使用/" class="archive-article-date">
+  	<time datetime="2018-09-21T01:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Mybatis的入门使用"><a href="#Mybatis的入门使用" class="headerlink" title="Mybatis的入门使用"></a>Mybatis的入门使用</h2><hr>
+<h3 id="导入Maven依赖"><a href="#导入Maven依赖" class="headerlink" title="导入Maven依赖"></a>导入Maven依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependence</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>x.x.x<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependence</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置XML文件"><a href="#配置XML文件" class="headerlink" title="配置XML文件"></a>配置XML文件</h3><p>配置Mybatis我们需要配置<strong>2个</strong>XML文件,一个是<strong>全局配置文件</strong>,这个配置文件主要配置的是mybatis的运行必要的配置，包括<strong>数据源</strong>(dataSource),<strong>加载三方插件</strong>(plugins),<strong>设置别名</strong>,<strong>设置映射文件的路径</strong>等等。另外一个就是<strong>局部映射</strong>文件，这个配置文件主要是用来书写每个POJO的(Plain Ordinary Java Object )<strong>SQL语句</strong>。</p>
+<h4 id="首先让我们来看一下全局配置文件的配置"><a href="#首先让我们来看一下全局配置文件的配置" class="headerlink" title="首先让我们来看一下全局配置文件的配置"></a>首先让我们来看一下全局配置文件的配置</h4><ol>
+<li><p>引入约束:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">  PUBLIC <span class="string">"-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line">  <span class="string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置相关的node节点</p>
+</li>
+</ol>
+<ul>
+<li>properties <br> 在这里面可以配置一些mybatis需要配置的配置项数据 <br> eg:<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"org/mybatis/example/config.properties"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"dev_user"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"F2Fa3!33TYyg"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>在下面的其他节点中，你可以用 *<em>${}</em>来引用其他的节点 <br>eg:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;driver&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;username&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当项目中多个地方存在对同一属性配置的时候，Mybatis的加载顺序是：</p>
+<ol>
+<li>properties主体中配置的property</li>
+<li>classpath下的properties下的文件</li>
+<li><em>sqlSessionFactory.build()</em> 方法中配置的property<p color="red">tips: 后加载的配置会覆盖先前加载的配置</p>
+</li>
+</ol>
+<ul>
+<li>setting <br>这个节点主要约束了mybatis在运行时的行为，具体的配置请参阅<br><a href="http://pye1st3o7.bkt.clouddn.com/mybatis-settings.xlsx" target="_blank" rel="noopener">http://pye1st3o7.bkt.clouddn.com/mybatis-settings.xlsx</a></li>
+</ul>
+<ul>
+<li>typeAliases <br>可以为Java类型起别名，而不必使用<strong>权限类名</strong> 例如在你要使用Integer类型的时候，比就不必在写java.lang.Integer,而直接就可以用你声明的别名来代替。当然在Mybatis中8大基本类型都有默认别名，不必在进行设置,这里只是那他来举个例子.<br>你也可以使用package来指定要起别名的包<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"domain.blog"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>我们也可以使用 <strong><em>@Aliases</em></strong> 注解的方式来给Java对象起别名</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Alias</span>(<span class="string">"author"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Author</span> </span>&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>objectFactory <br>这个节点用来生成mybatis返回结果集的，它有两个方法一个用来处理无参构造器，一个用来处理有参有参构造器。</p>
+</li>
+<li><p>plugins<br>这个节点主要是用来配置mybatis的插件，例如分页插件pageHandler,Executor,ParameterHandler,ResultSetHandler,StatementHandler等等。\</p>
+</li>
+</ul>
+<p><strong>Note:</strong> plugins中的方法可能会修改Mybatis本身的行为 所以使用时要小心。</p>
+<ul>
+<li>envenoments<br>eg:<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"..."</span> <span class="attr">value</span>=<span class="string">"..."</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;driver&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;username&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>这个标签主要配置mybatis运行时所需的环境,这个环境可以配置多个，但每次只有一个环境生效，你可以在envenoment里指定<strong>id</strong>属性来表示不同的环境,也可以在envenoments中设置<strong>default</strong>属性设置默认的运行环境。同时你可以在<strong><em>SqlSessionFactory.build(render,envenoment)</em></strong> 方法中设置生效的环境,若没设置则会使用default指定的环境。<br><em>transactionManager</em>指定事务的处理方式,有两种方式可供选择<br>类型 | JDBC | MANAGED</p>
+<ul>
+<li>|  :-: | -:<br>处理事务的方式|使用JDBC的commit和rollback机制，依赖数据库连接来管理事务|不会做任何事，不会commit也不会rollback，仅仅只是让容器本身来管理事务(eg:JEE Application Server Context),默认的行为是关闭此次连接。</li>
+</ul>
+<p>Note:你可以通过使用如下配置来关闭默认行为</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"MANAGED"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"closeConnection"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>参考文件</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>不用打赏 常来看看就好<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -201,19 +283,112 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/21/Mybatis的基本配置及使用/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
+
   
 
-    
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2018/09/21/Mybatis的基本配置及使用/",
+  owner: 'noodle-xia',
+  repo: 'comment',
+  oauth: {
+    client_id: '784a25328500074f8cc4',
+    client_secret: 'ca13508d5034ae7ec562a953cfaa5682565ae151',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -236,8 +411,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -162,19 +162,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-我的第一篇博客文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Mybatis的基本配置及使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/21/我的第一篇博客文章/">我的第一篇博客文章</a>
+      <a class="article-title" href="/2018/09/21/Mybatis的基本配置及使用/">Mybatis的基本配置及使用</a>
     </h1>
   
 
         
-        <a href="/2018/09/21/我的第一篇博客文章/" class="archive-article-date">
+        <a href="/2018/09/21/Mybatis的基本配置及使用/" class="archive-article-date">
   	<time datetime="2018-09-21T01:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-21</time>
 </a>
         
@@ -187,10 +187,57 @@
 
 <h3 id="配置XML文件"><a href="#配置XML文件" class="headerlink" title="配置XML文件"></a>配置XML文件</h3><p>配置Mybatis我们需要配置<strong>2个</strong>XML文件,一个是<strong>全局配置文件</strong>,这个配置文件主要配置的是mybatis的运行必要的配置，包括<strong>数据源</strong>(dataSource),<strong>加载三方插件</strong>(plugins),<strong>设置别名</strong>,<strong>设置映射文件的路径</strong>等等。另外一个就是<strong>局部映射</strong>文件，这个配置文件主要是用来书写每个POJO的(Plain Ordinary Java Object )<strong>SQL语句</strong>。</p>
 <h4 id="首先让我们来看一下全局配置文件的配置"><a href="#首先让我们来看一下全局配置文件的配置" class="headerlink" title="首先让我们来看一下全局配置文件的配置"></a>首先让我们来看一下全局配置文件的配置</h4><ol>
-<li>引入约束:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">  PUBLIC <span class="string">"-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line">  <span class="string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span><br></pre></td></tr></table></figure>
-
+<li><p>引入约束:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">  PUBLIC <span class="string">"-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line">  <span class="string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置相关的node节点</p>
 </li>
 </ol>
+<ul>
+<li>properties <br> 在这里面可以配置一些mybatis需要配置的配置项数据 <br> eg:<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"org/mybatis/example/config.properties"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"dev_user"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"F2Fa3!33TYyg"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>在下面的其他节点中，你可以用 *<em>${}</em>来引用其他的节点 <br>eg:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;driver&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;username&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当项目中多个地方存在对同一属性配置的时候，Mybatis的加载顺序是：</p>
+<ol>
+<li>properties主体中配置的property</li>
+<li>classpath下的properties下的文件</li>
+<li><em>sqlSessionFactory.build()</em> 方法中配置的property<p color="red">tips: 后加载的配置会覆盖先前加载的配置</p>
+</li>
+</ol>
+<ul>
+<li>setting <br>这个节点主要约束了mybatis在运行时的行为，具体的配置请参阅<br><a href="http://pye1st3o7.bkt.clouddn.com/mybatis-settings.xlsx" target="_blank" rel="noopener">http://pye1st3o7.bkt.clouddn.com/mybatis-settings.xlsx</a></li>
+</ul>
+<ul>
+<li>typeAliases <br>可以为Java类型起别名，而不必使用<strong>权限类名</strong> 例如在你要使用Integer类型的时候，比就不必在写java.lang.Integer,而直接就可以用你声明的别名来代替。当然在Mybatis中8大基本类型都有默认别名，不必在进行设置,这里只是那他来举个例子.<br>你也可以使用package来指定要起别名的包<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"domain.blog"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>我们也可以使用 <strong><em>@Aliases</em></strong> 注解的方式来给Java对象起别名</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Alias</span>(<span class="string">"author"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Author</span> </span>&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>objectFactory <br>这个节点用来生成mybatis返回结果集的，它有两个方法一个用来处理无参构造器，一个用来处理有参有参构造器。</p>
+</li>
+<li><p>plugins<br>这个节点主要是用来配置mybatis的插件，例如分页插件pageHandler,Executor,ParameterHandler,ResultSetHandler,StatementHandler等等。\</p>
+</li>
+</ul>
+<p><strong>Note:</strong> plugins中的方法可能会修改Mybatis本身的行为 所以使用时要小心。</p>
+<ul>
+<li>envenoments<br>eg:<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"..."</span> <span class="attr">value</span>=<span class="string">"..."</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;driver&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;username&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>这个标签主要配置mybatis运行时所需的环境,这个环境可以配置多个，但每次只有一个环境生效，你可以在envenoment里指定<strong>id</strong>属性来表示不同的环境,也可以在envenoments中设置<strong>default</strong>属性设置默认的运行环境。同时你可以在<strong><em>SqlSessionFactory.build(render,envenoment)</em></strong> 方法中设置生效的环境,若没设置则会使用default指定的环境。<br><em>transactionManager</em>指定事务的处理方式,有两种方式可供选择<br>类型 | JDBC | MANAGED</p>
+<ul>
+<li>|  :-: | -:<br>处理事务的方式|使用JDBC的commit和rollback机制，依赖数据库连接来管理事务|不会做任何事，不会commit也不会rollback，仅仅只是让容器本身来管理事务(eg:JEE Application Server Context),默认的行为是关闭此次连接。</li>
+</ul>
+<p>Note:你可以通过使用如下配置来关闭默认行为</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"MANAGED"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"closeConnection"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <p>参考文件</p>
 
@@ -216,7 +263,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/21/我的第一篇博客文章/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/09/21/Mybatis的基本配置及使用/">展开全文 >></a>
         </p>
       
 
