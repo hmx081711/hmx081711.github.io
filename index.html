@@ -231,10 +231,7 @@
 
 </li>
 </ul>
-<p>这个标签主要配置mybatis运行时所需的环境,这个环境可以配置多个，但每次只有一个环境生效，你可以在envenoment里指定<strong>id</strong>属性来表示不同的环境,也可以在envenoments中设置<strong>default</strong>属性设置默认的运行环境。同时你可以在<strong><em>SqlSessionFactory.build(render,envenoment)</em></strong> 方法中设置生效的环境,若没设置则会使用default指定的环境。<br><em>transactionManager</em>指定事务的处理方式,有两种方式可供选择<br>类型 | JDBC | MANAGED</p>
-<ul>
-<li>|  :-: | -:<br>处理事务的方式|使用JDBC的commit和rollback机制，依赖数据库连接来管理事务|不会做任何事，不会commit也不会rollback，仅仅只是让容器本身来管理事务(eg:JEE Application Server Context),默认的行为是关闭此次连接。</li>
-</ul>
+<p>这个标签主要配置mybatis运行时所需的环境,这个环境可以配置多个，但每次只有一个环境生效，你可以在envenoment里指定<strong>id</strong>属性来表示不同的环境,也可以在envenoments中设置<strong>default</strong>属性设置默认的运行环境。同时你可以在<strong><em>SqlSessionFactory.build(render,envenoment)</em></strong> 方法中设置生效的环境,若没设置则会使用default指定的环境。<br><em>transactionManager</em>指定事务的处理方式,有两种方式可供选择<br>类型 | JDBC | MANAGED<br>:-|    :-:   | :-:<br>处理事务的方式|使用JDBC的commit和rollback机制，依赖数据库连接来管理事务|不会做任何事，不会commit也不会rollback，仅仅只是让容器本身来管理事务(eg:JEE Application Server Context),默认的行为是关闭此次连接。</p>
 <p>Note:你可以通过使用如下配置来关闭默认行为</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"MANAGED"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"closeConnection"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
