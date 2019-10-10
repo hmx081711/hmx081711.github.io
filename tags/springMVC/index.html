@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Dorothy Wang的博客</title>
+  <title>Tag: springMVC | Dorothy Wang的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Dorothy Wang的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/springMVC/index.html">
 <meta property="og:site_name" content="Dorothy Wang的博客">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -154,113 +154,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-使用springMVC开发Restful-API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/09/30/使用springMVC开发Restful-API/" class="archive-article-date">
+  	<time datetime="2019-09-30T01:30:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-30</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/30/使用springMVC开发Restful-API/">使用springMVC开发Restful API</a>
+      <a class="archive-article-title" href="/2019/09/30/使用springMVC开发Restful-API/">使用springMVC开发Restful API</a>
     </h1>
   
 
-        
-        <a href="/2019/09/30/使用springMVC开发Restful-API/" class="archive-article-date">
-  	<time datetime="2019-09-30T01:30:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="第一印象"><a href="#第一印象" class="headerlink" title="第一印象"></a>第一印象</h2><table>
-<thead>
-<tr>
-<th align="right">操作</th>
-<th>传统web应用</th>
-<th align="left">Rest风格web应用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="right">查询</td>
-<td>localhost:8080/query?username=”小明”</td>
-<td align="left">localhost:8080/query/1</td>
-</tr>
-<tr>
-<td align="right">创建</td>
-<td>localhost:8080/create?username=”小明”&amp;age=16…</td>
-<td align="left">localhost:8080/create/user</td>
-</tr>
-<tr>
-<td align="right">修改</td>
-<td>localhost:8080/update?id=1</td>
-<td align="left">localhost:8080/update/1</td>
-</tr>
-<tr>
-<td align="right">删除</td>
-<td>localhost:8080/delete?id=1</td>
-<td align="left">lcoalhost:8080/delete/1</td>
-</tr>
-</tbody></table>
-<h2 id="Restful风格Web应用的特点"><a href="#Restful风格Web应用的特点" class="headerlink" title="Restful风格Web应用的特点"></a>Restful风格Web应用的特点</h2><p>1.使用url来描述资源 <br>2.使用http方法来描述行为 <br>3.使用http状态码来描述结果 <br>4.使用json来交互数据<br>Note: Restful只是一种风格，并不强制要求实现</p>
-<h2 id="编写第一个Restful-API"><a href="#编写第一个Restful-API" class="headerlink" title="编写第一个Restful API"></a>编写第一个Restful API</h2><ul>
-<li>搭建Web环境，这里我们使用MockMvc来模拟创建web环境<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserControllerTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WebApplicationContext wac;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MockMvc mockMvc;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>这件就搭建好了模拟好的Web环境</p>
-<ul>
-<li>编写测试用的Controller</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/user/&#123;id:\\d+&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getInfo</span><span class="params">(@PathVariable(required = <span class="keyword">false</span>, name = <span class="string">"id"</span>)</span> Long id) </span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setId(<span class="number">1L</span>);</span><br><span class="line">    user.setUsername(<span class="string">"DorothyWang"</span>);</span><br><span class="line">    user.setPassword(<span class="string">"1234"</span>);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>GetMapping</strong>注解是RestApi中的一个重要的注解，它相当于 <code>@RequestMapping(value=&quot;targetUrl&quot;,method=&quot;RequestMethod.GET&quot;)</code>,与其相对应的注解还有<strong>PostMapping</strong>,<strong>DelateMapping</strong>,<strong>PutMapping</strong>,其原理都和GetMapping一样。</p>
-<ul>
-<li>编写针对Restful的测试用例</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f3</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    String user = mockMvc.perform(MockMvcRequestBuilders.get(<span class="string">"/user/1"</span>).contentType(MediaType.APPLICATION_JSON_UTF8))</span><br><span class="line">            .andExpect(MockMvcResultMatchers.status().isOk())</span><br><span class="line">            .andReturn().getResponse().getContentAsString();</span><br><span class="line"></span><br><span class="line">    System.err.println(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用<strong>MockRequestBuilders</strong>来发起http请求,并设置请求的contentType,这里选择的是Json格式返回。andExcept()方法是设置期待的结果。andReturn()方法是用来获取返回的结果,并按照指定格式来处理返回结果。</p>
-<h3 id="使用注解申明Restful-API"><a href="#使用注解申明Restful-API" class="headerlink" title="使用注解申明Restful API"></a>使用注解申明Restful API</h3><h4 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h4><ul>
-<li>@RestController <br>标识该应用是Rest风格的，标识为此注解的类中的所有Http方法若要返回Json数据时,不必再为它标注@ReponseBody注解</li>
-<li>@JsonView <br>这个注解是用来在不同的请求中显示指定的字段信息，因为在某些情况下我们不需要返回对象的所有信息，或者不应该返回对象的所有信息。<br>下面是使用JsonView注解的具体操作:</li>
-</ul>
-<ol>
-<li>定义视图接口，这个接口表明了该对象返回的不同状态<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SimpleUserView</span> </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDetailView</span> <span class="keyword">extends</span> <span class="title">SimpleUserView</span> </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>这里就定义了两个返回视图,返回的时候User对象的状态就有两种显示方式</p>
-<ol start="2">
-<li>在需要特定处理的字段或方法上标注@JsonView，并指明value属性<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SimpleUserView</span> </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDetailView</span> <span class="keyword">extends</span> <span class="title">SimpleUserView</span> </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JsonView</span>(SimpleUserView.class)</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JsonView</span>(UserDetailView.class)</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>我们可以看到User对象中的password的字段被标记成了   <code>@JsonView(UserDetailView.class)</code>，这表示在Controller中声明为<code>@JsonView(UserDetailView.class)</code>的http方法中才包含password的信息，由于<br>UserDetailView继承了SimpleUserView，所以在UserDetailView中也会显示username字段。</p>
-<ol start="3">
-<li>在Controller中的http方法上标识要显示的视图<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/user/&#123;id:\\d+&#125;"</span>)</span><br><span class="line"><span class="meta">@JsonView</span>(User.UserDetailView.class)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getInfo</span><span class="params">(@PathVariable(required = <span class="keyword">false</span>, name = <span class="string">"id"</span>)</span> Long id) </span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setId(<span class="number">1L</span>);</span><br><span class="line">    user.setUsername(<span class="string">"DorothyWang"</span>);</span><br><span class="line">    user.setPassword(<span class="string">"1234"</span>);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>这样就可以按要求返回相应的视图了。</p>
-<ul>
-<li>Valid<br>此注解是用来进行表单验证的，标注为@Valid的对象,会在请求发起之后，根据在对象字段上定义的一些验证注解进行表单校验。校验的处理结果被封装到了<strong>BindingResult</strong>对象中,<font color="#dd0000">该对象允许程序在校验失败后不抛出异常，任然进入http方法中运行。</font><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PutMapping</span>(<span class="string">"/user/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">update</span><span class="params">(@PathVariable(required = <span class="keyword">false</span>, name = <span class="string">"id"</span>)</span> Long id, @Valid @RequestBody User user,</span></span><br><span class="line"><span class="function">                   BindingResult bindingResult) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bindingResult.hasErrors()) &#123;</span><br><span class="line">        bindingResult.getAllErrors().stream().forEach(error -&gt; &#123;</span><br><span class="line">            FieldError fieldError = (FieldError) error;</span><br><span class="line">            System.out.println(fieldError.getField() + <span class="string">""</span> + fieldError.getDefaultMessage());</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>从bindRequest对象中可以去到每个字段的错误信息,并进行处理。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NotBlank</span>(message = <span class="string">"密码必须不能为空"</span>)</span><br><span class="line"><span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Past</span>(message = <span class="string">"生日必须是一个过去的时间"</span>)</span><br><span class="line"><span class="keyword">private</span> Date date;</span><br></pre></td></tr></table></figure>
-
-<p>这些注解都是验证用的注解，关于这些注解还有很多，具体可以查阅org.hibernate.validator.constraints,javax.validation.constraints等包。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -276,251 +197,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/30/使用springMVC开发Restful-API/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-Mybatis的基本配置及使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/21/Mybatis的基本配置及使用/">Mybatis的基本配置及使用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/21/Mybatis的基本配置及使用/" class="archive-article-date">
-  	<time datetime="2018-09-21T01:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="导入Maven依赖"><a href="#导入Maven依赖" class="headerlink" title="导入Maven依赖"></a>导入Maven依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependence</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>x.x.x<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependence</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="配置XML文件"><a href="#配置XML文件" class="headerlink" title="配置XML文件"></a>配置XML文件</h3><p>配置Mybatis我们需要配置<strong>2个</strong>XML文件,一个是<strong>全局配置文件</strong>,这个配置文件主要配置的是mybatis的运行必要的配置，包括<strong>数据源</strong>(dataSource),<strong>加载三方插件</strong>(plugins),<strong>设置别名</strong>,<strong>设置映射文件的路径</strong>等等。另外一个就是<strong>局部映射</strong>文件，这个配置文件主要是用来书写每个POJO的(Plain Ordinary Java Object )<strong>SQL语句</strong>。</p>
-<h4 id="全局配置文件的配置"><a href="#全局配置文件的配置" class="headerlink" title="全局配置文件的配置"></a>全局配置文件的配置</h4><h5 id="1-引入约束"><a href="#1-引入约束" class="headerlink" title="1. 引入约束:"></a>1. 引入约束:</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">  PUBLIC <span class="string">"-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line">  <span class="string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-配置相关的node节点"><a href="#2-配置相关的node节点" class="headerlink" title="2. 配置相关的node节点"></a>2. 配置相关的node节点</h5><ul>
-<li>properties <br> 在这里面可以配置一些mybatis需要配置的配置项数据 <br> eg:<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"org/mybatis/example/config.properties"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"dev_user"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"F2Fa3!33TYyg"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>在下面的其他节点中，你可以用 *<em>${}</em>来引用其他的节点 <br>eg:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;driver&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;username&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>当项目中多个地方存在对同一属性配置的时候，Mybatis的加载顺序是：</p>
-<ol>
-<li>properties主体中配置的property</li>
-<li>classpath下的properties下的文件</li>
-<li><em>sqlSessionFactory.build()</em> 方法中配置的property<p color="red">tips: 后加载的配置会覆盖先前加载的配置</p>
-</li>
-</ol>
-<ul>
-<li>setting <br>这个节点主要约束了mybatis在运行时的行为，具体的配置请参阅<br><a href="http://pye1st3o7.bkt.clouddn.com/mybatis-settings.xlsx" target="_blank" rel="noopener">http://pye1st3o7.bkt.clouddn.com/mybatis-settings.xlsx</a></li>
-</ul>
-<ul>
-<li>typeAliases <br>可以为Java类型起别名，而不必使用<strong>权限类名</strong> 例如在你要使用Integer类型的时候，比就不必在写java.lang.Integer,而直接就可以用你声明的别名来代替。当然在Mybatis中8大基本类型都有默认别名，不必在进行设置,这里只是那他来举个例子.<br>你也可以使用package来指定要起别名的包<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"domain.blog"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>我们也可以使用 <strong><em>@Alias</em></strong> 注解的方式来给Java对象起别名</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Alias</span>(<span class="string">"author"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Author</span> </span>&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>objectFactory <br>这个节点用来生成mybatis返回结果集的，它有两个方法一个用来处理无参构造器，一个用来处理有参有参构造器。</p>
-</li>
-<li><p>plugins<br>这个节点主要是用来配置mybatis的插件，例如分页插件pageHandler,Executor,ParameterHandler,ResultSetHandler,StatementHandler等等。\</p>
-</li>
-</ul>
-<p><strong>Note:</strong> plugins中的方法可能会修改Mybatis本身的行为 所以使用时要小心。</p>
-<ul>
-<li>envenoments<br>eg:<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"..."</span> <span class="attr">value</span>=<span class="string">"..."</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;driver&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;username&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>这个标签主要配置mybatis运行时所需的环境,这个环境可以配置多个，但每次只有一个环境生效，你可以在envenoment里指定<strong>id</strong>属性来表示不同的环境,也可以在envenoments中设置<strong>default</strong>属性设置默认的运行环境。同时你可以在<strong><em>SqlSessionFactory.build(render,envenoment)</em></strong> 方法中设置生效的环境,若没设置则会使用default指定的环境。<br><em>transactionManager</em>指定事务的处理方式,有两种方式可供选择</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th align="center">JDBC</th>
-<th align="center">MANAGED</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>处理事务的方式</td>
-<td align="center">使用JDBC的commit和rollback机制，依赖数据库连接来管理事务</td>
-<td align="center">不会做任何事，不会commit也不会rollback，仅仅只是让容器本身来管理事务(eg:JEE Application Server Context),默认的行为是关闭此次连接。</td>
-</tr>
-</tbody></table>
-<p>Note:你可以通过使用如下配置来关闭默认行为</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"MANAGED"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"closeConnection"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>datasource</strong>是用来设置mybatis所使用的数据源，type属性用来是指定数据源的种类 </p>
-<table>
-<thead>
-<tr>
-<th>UNPOOLED</th>
-<th align="center">POOLED</th>
-<th align="right">JNDI</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>不使用连接池 适用于小型应用</td>
-<td align="center">使用连接池,最常见的配置</td>
-<td align="right">仅仅适用于EBJ和Application Server场合</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>dataScourceProvider<br>指定数据库方言,这也是Mybatis能执行多种数据库的SQL语句的原因。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">databaseIdProvider</span> <span class="attr">type</span>=<span class="string">"DB_VENDOR"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"SQL Server"</span> <span class="attr">value</span>=<span class="string">"sqlserver"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"DB2"</span> <span class="attr">value</span>=<span class="string">"db2"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"Oracle"</span> <span class="attr">value</span>=<span class="string">"oracle"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">databaseIdProvider</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>mappers<br>指定mapper映射文件的路径,有三种配置方式</p>
-</li>
-</ul>
-<p>1.url<br><code>&lt;mapper url=&quot;file:///var/mappers/AuthorMapper.xml&quot;/&gt;</code> 不常用</p>
-<p>2.class<br><code>&lt;mapper class=&quot;org.mybatis.builder.AuthorMapper&quot;/&gt;</code><br>3.resource<br><code>&lt;mapper resource=&quot;org/mybatis/builder/AuthorMapper.xml&quot;/&gt;</code></p>
-<p>我们同样可以来指定要扫描的包名<br><code>&lt;package name=&quot;org.mybatis.builder&quot;/&gt;</code></p>
-<h4 id="Mapper映射文件的配置"><a href="#Mapper映射文件的配置" class="headerlink" title="Mapper映射文件的配置"></a>Mapper映射文件的配置</h4><hr>
-<h5 id="1-导入约束"><a href="#1-导入约束" class="headerlink" title="1.导入约束"></a>1.导入约束</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="2-常用节点"><a href="#2-常用节点" class="headerlink" title="2.常用节点"></a>2.常用节点</h5><ul>
-<li>select<br>主要书写查询类的SQL语句</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findStudentById"</span> <span class="attr">parameterType</span>=<span class="string">"long"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span><br><span class="line">        SELECT *</span><br><span class="line">        FROM stu</span><br><span class="line">        WHERE id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>此处的 <strong>id</strong> 对应映射接口中的方法名, <strong>parameterType</strong> 为入参的类型，<strong>resultType</strong> 为返回结果的类型。<br>我们可以使用<strong>#{}</strong>来使statement转化为preparedStatement,#{id}在运行时将会被解析成?。</p>
-<ul>
-<li><p>update<br>主要书写更新操作用的SQL语句</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateStudent"</span> <span class="attr">parameterType</span>=<span class="string">"Student"</span>&gt;</span></span><br><span class="line">    UPDATE stu</span><br><span class="line">    SET name = #&#123;name&#125;,</span><br><span class="line">    age = #&#123;age&#125;</span><br><span class="line">    WHERE id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>delete<br>主要书写删除用的SQL语句</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteById"</span> <span class="attr">parameterType</span>=<span class="string">"long"</span>&gt;</span></span><br><span class="line">    DELETE</span><br><span class="line">    FROM stu</span><br><span class="line">    WHERE id = #&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>insert<br>用于插入操作的SQL语句</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertStudent"</span> <span class="attr">parameterType</span>=<span class="string">"Student"</span> <span class="attr">useGeneratedKeys</span>=<span class="string">"true&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">    INSERT</span></span></span><br><span class="line"><span class="tag"><span class="string">    INTO stu(name,age)</span></span></span><br><span class="line"><span class="tag"><span class="string">    VALUES (#&#123;name&#125;,#&#123;age&#125;);</span></span></span><br><span class="line"><span class="tag"><span class="string">&lt;/insert&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p><strong>NOTE:</strong> 如果在数据库表中有自动生成的字段时，我们可以使用useGenerateedKey=true配置</p>
-<p>在日常开发中,我们可能有的时候仅仅只需要插入一条数据,但有时我们往往会要求返回插入数据的Id，此时在进行查询操作就不合适了,效率也会变低,这是我们可以使用Mybatis提供的selectKey，他可以返回我们的自动生成的id</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;insert id=<span class="string">"insertStudent"</span> parameterType=<span class="string">"Student"</span>&gt;</span><br><span class="line">    &lt;selectKey resultType=<span class="string">"long"</span> order=<span class="string">"AFTER"</span> keyProperty=<span class="string">"id"</span>&gt;</span><br><span class="line">        <span class="function">SELECT <span class="title">LAST_INSERT_ID</span><span class="params">()</span></span>;</span><br><span class="line">    &lt;/selectKey&gt;</span><br><span class="line">    INSERT</span><br><span class="line">    <span class="function">INTO <span class="title">stu</span><span class="params">(name,age)</span></span></span><br><span class="line"><span class="function">    <span class="title">VALUES</span> <span class="params">(#&#123;name&#125;,#&#123;age&#125;)</span></span>;</span><br><span class="line">&lt;/insert&gt;</span><br></pre></td></tr></table></figure>
-
-<p>当然 <code>&lt;insert id=&quot;insertStudent&quot; parameterType=&quot;Student&quot; useGenerateedKey=true keyProperty=&quot;id&quot;&gt;</code>也可以实现同样的效果<br>获取的id用<strong>student.getId()</strong> 接收就行了。</p>
-<ul>
-<li>sql 片段 <br>可以用其来来替换掉里面的sql语句,实现了sql的复用<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">"select"</span>&gt;</span></span><br><span class="line">     id ,name ,age</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findStudentById"</span> <span class="attr">parameterType</span>=<span class="string">"long"</span> <span class="attr">resultType</span>=<span class="string">"Student"</span>&gt;</span></span><br><span class="line">   SELECT <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">"select"</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span> </span><br><span class="line">   FROM stu</span><br><span class="line">   WHERE id = #&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>使用<code>&lt;include refid=&quot;xx&quot;&gt;&lt;/include&gt;</code>来引用对应的代码块</p>
-<ul>
-<li>${}的使用</li>
-</ul>
-<p><strong>${}</strong>是一种字符串的匹配,他会把解析的数据直接渲染成字符串，<br>而不是像 <strong>#{}</strong> 一样用?占位,这在某些场合，例如模糊查询时很有用,<br>但是它是不安全的，由于它会直接渲染数据 所以就可能导致 <strong>sql注入</strong> ,使用时一定要小心。</p>
-<h3 id="mybatis的配置"><a href="#mybatis的配置" class="headerlink" title="mybatis的配置"></a>mybatis的配置</h3><p>Mybatis其实核心就三大块，有两个我们已经讨论过了，就剩下最后一个组件<strong>SqlSessionFactory</strong>。SqlSessionFactory加载全局配置文件并创建<strong>SqlSession</strong> 会话对数据库进行CRUD操作。</p>
-<p>Mybatis官方提供两种方式来创建这个<strong>SqlSessionFactory</strong>对象</p>
-<ul>
-<li>一种是通过InputStream流的方式来加载</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">boost1</span><span class="params">()</span></span>&#123;</span><br><span class="line">InputStream resource = Resources.getResourceAsStream(<span class="string">"mybatis/mybatis-config.xml"</span>);</span><br><span class="line">SqlSessionFactoryBuilder sessionFactoryBuilder = <span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line">SqlSessionFactory sqlSessionFactory = sessionFactoryBuilder.build(resource);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>还有一种是通过Configration对象来创建<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">boost2</span><span class="params">()</span></span>&#123;</span><br><span class="line">     DataSource dataSource = BlogDataSourceFactory.getBlogDataSource();</span><br><span class="line">     TransactionFactory transactionFactory = <span class="keyword">new</span> JdbcTransactionFactory();</span><br><span class="line">     Environment environment = <span class="keyword">new</span> Environment(<span class="string">"development"</span>, transactionFactory, dataSource);</span><br><span class="line">     Configuration configuration = <span class="keyword">new</span> Configuration(environment);</span><br><span class="line">     configuration.addMapper(BlogMapper.class);</span><br><span class="line">     SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(configuration);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>至此,Mybatis的基本使用及配置就介绍完了,感谢各位的捧场。</p>
-<hr>
-<p>参考文件<br><a href="https://mybatis.org/mybatis-3/" target="_blank" rel="noopener">Mybatis官方文档</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/21/Mybatis的基本配置及使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -542,10 +231,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
