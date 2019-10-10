@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Dorothy Wang的博客">
 <meta property="og:description" content="第一印象   操作 传统web应用 Rest风格web应用    查询 localhost:8080/query?username=”小明” localhost:8080/query/1   创建 localhost:8080/create?username=”小明”&amp;amp;age=16… localhost:8080/create/user   修改 localhost:8080/update">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-10T07:01:37.917Z">
+<meta property="og:updated_time" content="2019-10-10T07:09:13.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用springMVC开发Restful API">
 <meta name="twitter:description" content="第一印象   操作 传统web应用 Rest风格web应用    查询 localhost:8080/query?username=”小明” localhost:8080/query/1   创建 localhost:8080/create?username=”小明”&amp;amp;age=16… localhost:8080/create/user   修改 localhost:8080/update">
@@ -182,28 +182,28 @@
 <tr>
 <th align="right">操作</th>
 <th>传统web应用</th>
-<th align="right">Rest风格web应用</th>
+<th align="left">Rest风格web应用</th>
 </tr>
 </thead>
 <tbody><tr>
 <td align="right">查询</td>
 <td>localhost:8080/query?username=”小明”</td>
-<td align="right">localhost:8080/query/1</td>
+<td align="left">localhost:8080/query/1</td>
 </tr>
 <tr>
 <td align="right">创建</td>
 <td>localhost:8080/create?username=”小明”&amp;age=16…</td>
-<td align="right">localhost:8080/create/user</td>
+<td align="left">localhost:8080/create/user</td>
 </tr>
 <tr>
 <td align="right">修改</td>
 <td>localhost:8080/update?id=1</td>
-<td align="right">localhost:8080/update/1</td>
+<td align="left">localhost:8080/update/1</td>
 </tr>
 <tr>
 <td align="right">删除</td>
 <td>localhost:8080/delete?id=1</td>
-<td align="right">lcoalhost:8080/delete/1</td>
+<td align="left">lcoalhost:8080/delete/1</td>
 </tr>
 </tbody></table>
 <h2 id="Restful风格Web应用的特点"><a href="#Restful风格Web应用的特点" class="headerlink" title="Restful风格Web应用的特点"></a>Restful风格Web应用的特点</h2><p>1.使用url来描述资源 <br>2.使用http方法来描述行为 <br>3.使用http状态码来描述结果 <br>4.使用json来交互数据<br>Note: Restful只是一种风格，并不强制要求实现</p>
@@ -240,15 +240,15 @@
 
 </li>
 </ol>
-<p>我们可以看到User对象中的password的字段被标记成了   <code>@JsonView(UserDetailView.class)</code>，这表示在Controller中声明为<code>@JsonView(UserDetailView.class)</code>的http方法中才包含password的信息，由于<br>UserDetailView继承了SimpleUserView，所以在UserDetailView中也会显示username字段。\</p>
+<p>我们可以看到User对象中的password的字段被标记成了   <code>@JsonView(UserDetailView.class)</code>，这表示在Controller中声明为<code>@JsonView(UserDetailView.class)</code>的http方法中才包含password的信息，由于<br>UserDetailView继承了SimpleUserView，所以在UserDetailView中也会显示username字段。</p>
 <ol start="3">
-<li>在Controller中的http方法上标识要显示的视图 \<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/user/&#123;id:\\d+&#125;"</span>)</span><br><span class="line"><span class="meta">@JsonView</span>(User.UserDetailView.class)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getInfo</span><span class="params">(@PathVariable(required = <span class="keyword">false</span>, name = <span class="string">"id"</span>)</span> Long id) </span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setId(<span class="number">1L</span>);</span><br><span class="line">    user.setUsername(<span class="string">"DorothyWang"</span>);</span><br><span class="line">    user.setPassword(<span class="string">"1234"</span>);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>在Controller中的http方法上标识要显示的视图<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/user/&#123;id:\\d+&#125;"</span>)</span><br><span class="line"><span class="meta">@JsonView</span>(User.UserDetailView.class)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getInfo</span><span class="params">(@PathVariable(required = <span class="keyword">false</span>, name = <span class="string">"id"</span>)</span> Long id) </span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setId(<span class="number">1L</span>);</span><br><span class="line">    user.setUsername(<span class="string">"DorothyWang"</span>);</span><br><span class="line">    user.setPassword(<span class="string">"1234"</span>);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
 <p>这样就可以按要求返回相应的视图了。</p>
 <ul>
-<li>Valid<br>此注解是用来进行表单验证的，标注为@Valid的对象,会在请求发起之后，根据在对象字段上定义的一些验证注解进行表单校验。校验的处理结果被封装到了<strong>BindingResult</strong>对象中,<p color="red">该对象允许程序在校验失败后不抛出异常，任然进入http方法中运行。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PutMapping</span>(<span class="string">"/user/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">update</span><span class="params">(@PathVariable(required = <span class="keyword">false</span>, name = <span class="string">"id"</span>)</span> Long id, @Valid @RequestBody User user,</span></span><br><span class="line"><span class="function">                   BindingResult bindingResult) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bindingResult.hasErrors()) &#123;</span><br><span class="line">        bindingResult.getAllErrors().stream().forEach(error -&gt; &#123;</span><br><span class="line">            FieldError fieldError = (FieldError) error;</span><br><span class="line">            System.out.println(fieldError.getField() + <span class="string">""</span> + fieldError.getDefaultMessage());</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<li>Valid<br>此注解是用来进行表单验证的，标注为@Valid的对象,会在请求发起之后，根据在对象字段上定义的一些验证注解进行表单校验。校验的处理结果被封装到了<strong>BindingResult</strong>对象中,<font color="#dd0000">该对象允许程序在校验失败后不抛出异常，任然进入http方法中运行。</font><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PutMapping</span>(<span class="string">"/user/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">update</span><span class="params">(@PathVariable(required = <span class="keyword">false</span>, name = <span class="string">"id"</span>)</span> Long id, @Valid @RequestBody User user,</span></span><br><span class="line"><span class="function">                   BindingResult bindingResult) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bindingResult.hasErrors()) &#123;</span><br><span class="line">        bindingResult.getAllErrors().stream().forEach(error -&gt; &#123;</span><br><span class="line">            FieldError fieldError = (FieldError) error;</span><br><span class="line">            System.out.println(fieldError.getField() + <span class="string">""</span> + fieldError.getDefaultMessage());</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -554,11 +554,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">springMVC Restful</a>
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color3">springMVC Restful</a>
               </li>
             
             <div class="clearfix"></div>
