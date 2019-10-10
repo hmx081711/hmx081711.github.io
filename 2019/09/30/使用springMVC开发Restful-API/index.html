@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | Dorothy Wang的博客</title>
+  <title>使用springMVC开发Restful API | Dorothy Wang的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Dorothy Wang的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="第一印象   操作 传统web应用 Rest风格web应用    查询 localhost:8080/query?username=”小明” localhost:8080/query/1   创建 localhost:8080/create?username=”小明”&amp;amp;age=16… localhost:8080/create/user   修改 localhost:8080/update">
+<meta name="keywords" content="springMVC Restful">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用springMVC开发Restful API">
+<meta property="og:url" content="http://yoursite.com/2019/09/30/使用springMVC开发Restful-API/index.html">
 <meta property="og:site_name" content="Dorothy Wang的博客">
+<meta property="og:description" content="第一印象   操作 传统web应用 Rest风格web应用    查询 localhost:8080/query?username=”小明” localhost:8080/query/1   创建 localhost:8080/create?username=”小明”&amp;amp;age=16… localhost:8080/create/user   修改 localhost:8080/update">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-10T03:08:37.843Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dorothy Wang的博客">
+<meta name="twitter:title" content="使用springMVC开发Restful API">
+<meta name="twitter:description" content="第一印象   操作 传统web应用 Rest风格web应用    查询 localhost:8080/query?username=”小明” localhost:8080/query/1   创建 localhost:8080/create?username=”小明”&amp;amp;age=16… localhost:8080/create/user   修改 localhost:8080/update">
   
     <link rel="alternative" href="/atom.xml" title="Dorothy Wang的博客" type="application/atom+xml">
   
@@ -152,60 +157,262 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-使用springMVC开发Restful-API" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/21/Mybatis的基本配置及使用/" class="archive-article-date">
-  	<time datetime="2018-09-21T01:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/21/Mybatis的基本配置及使用/">Mybatis的基本配置及使用</a>
+    <h1 class="article-title" itemprop="name">
+      使用springMVC开发Restful API
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/30/使用springMVC开发Restful-API/" class="archive-article-date">
+  	<time datetime="2019-09-30T01:30:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一印象"><a href="#第一印象" class="headerlink" title="第一印象"></a>第一印象</h2><table>
+<thead>
+<tr>
+<th align="right">操作</th>
+<th>传统web应用</th>
+<th align="right">Rest风格web应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">查询</td>
+<td>localhost:8080/query?username=”小明”</td>
+<td align="right">localhost:8080/query/1</td>
+</tr>
+<tr>
+<td align="right">创建</td>
+<td>localhost:8080/create?username=”小明”&amp;age=16…</td>
+<td align="right">localhost:8080/create/user</td>
+</tr>
+<tr>
+<td align="right">修改</td>
+<td>localhost:8080/update?id=1</td>
+<td align="right">localhost:8080/update/1</td>
+</tr>
+<tr>
+<td align="right">删除</td>
+<td>localhost:8080/delete?id=1</td>
+<td align="right">lcoalhost:8080/delete/1</td>
+</tr>
+</tbody></table>
+<h2 id="Restful风格Web应用的特点"><a href="#Restful风格Web应用的特点" class="headerlink" title="Restful风格Web应用的特点"></a>Restful风格Web应用的特点</h2><p>1.使用url来描述资源 <br>2.使用http方法来描述行为 <br>3.使用http状态码来描述结果 <br>4.使用json来交互数据<br>Note: Restful只是一种风格，并不强制要求实现</p>
+<h2 id="编写第一个Restful-API"><a href="#编写第一个Restful-API" class="headerlink" title="编写第一个Restful API"></a>编写第一个Restful API</h2><ul>
+<li>搭建Web环境，这里我们使用MockMvc来模拟创建web环境<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserControllerTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WebApplicationContext wac;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MockMvc mockMvc;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>这件就搭建好了模拟好的Web环境</p>
+<ul>
+<li>编写测试用的Controller</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/user/&#123;id:\\d+&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getInfo</span><span class="params">(@PathVariable(required = <span class="keyword">false</span>, name = <span class="string">"id"</span>)</span> Long id) </span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setId(<span class="number">1L</span>);</span><br><span class="line">    user.setUsername(<span class="string">"DorothyWang"</span>);</span><br><span class="line">    user.setPassword(<span class="string">"1234"</span>);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>GetMapping</strong>注解是RestApi中的一个重要的注解，它相当于 <code>@RequestMapping(value=&quot;targetUrl&quot;,method=&quot;RequestMethod.GET&quot;)</code>,与其相对应的注解还有<strong>PostMapping</strong>,<strong>DelateMapping</strong>,<strong>PutMapping</strong>,其原理都和GetMapping一样。</p>
+<ul>
+<li>编写针对Restful的测试用例</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f3</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    String user = mockMvc.perform(MockMvcRequestBuilders.get(<span class="string">"/user/1"</span>).contentType(MediaType.APPLICATION_JSON_UTF8))</span><br><span class="line">            .andExpect(MockMvcResultMatchers.status().isOk())</span><br><span class="line">            .andReturn().getResponse().getContentAsString();</span><br><span class="line"></span><br><span class="line">    System.err.println(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<strong>MockRequestBuilders</strong>来发起http请求,并设置请求的contentType,这里选择的是Json格式返回。andExcept()方法是设置期待的结果。andReturn()方法是用来获取返回的结果,并按照指定格式来处理返回结果。</p>
+<h3 id="使用注解申明Restful-API"><a href="#使用注解申明Restful-API" class="headerlink" title="使用注解申明Restful API"></a>使用注解申明Restful API</h3><h4 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h4><ul>
+<li><h3 id="在Restful-API-中传递参数"><a href="#在Restful-API-中传递参数" class="headerlink" title="在Restful API 中传递参数"></a>在Restful API 中传递参数</h3></li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>不用打赏 常来看看就好<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">springMVC Restful</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/30/使用springMVC开发Restful-API/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/09/21/Mybatis的基本配置及使用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mybatis的基本配置及使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一印象"><span class="toc-number">1.</span> <span class="toc-text">第一印象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Restful风格Web应用的特点"><span class="toc-number">2.</span> <span class="toc-text">Restful风格Web应用的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编写第一个Restful-API"><span class="toc-number">3.</span> <span class="toc-text">编写第一个Restful API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用注解申明Restful-API"><span class="toc-number">3.1.</span> <span class="toc-text">使用注解申明Restful API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用注解"><span class="toc-number">3.1.1.</span> <span class="toc-text">常用注解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Restful-API-中传递参数"><span class="toc-number">3.2.</span> <span class="toc-text">在Restful API 中传递参数</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://yoursite.com/2019/09/30/使用springMVC开发Restful-API/",
+  owner: 'hxm081711',
+  repo: 'comment',
+  oauth: {
+    client_id: '784a25328500074f8cc4',
+    client_secret: 'ca13508d5034ae7ec562a953cfaa5682565ae151',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -228,8 +435,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

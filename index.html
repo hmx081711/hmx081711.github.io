@@ -154,6 +154,130 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-使用springMVC开发Restful-API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/30/使用springMVC开发Restful-API/">使用springMVC开发Restful API</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/30/使用springMVC开发Restful-API/" class="archive-article-date">
+  	<time datetime="2019-09-30T01:30:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一印象"><a href="#第一印象" class="headerlink" title="第一印象"></a>第一印象</h2><table>
+<thead>
+<tr>
+<th align="right">操作</th>
+<th>传统web应用</th>
+<th align="right">Rest风格web应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">查询</td>
+<td>localhost:8080/query?username=”小明”</td>
+<td align="right">localhost:8080/query/1</td>
+</tr>
+<tr>
+<td align="right">创建</td>
+<td>localhost:8080/create?username=”小明”&amp;age=16…</td>
+<td align="right">localhost:8080/create/user</td>
+</tr>
+<tr>
+<td align="right">修改</td>
+<td>localhost:8080/update?id=1</td>
+<td align="right">localhost:8080/update/1</td>
+</tr>
+<tr>
+<td align="right">删除</td>
+<td>localhost:8080/delete?id=1</td>
+<td align="right">lcoalhost:8080/delete/1</td>
+</tr>
+</tbody></table>
+<h2 id="Restful风格Web应用的特点"><a href="#Restful风格Web应用的特点" class="headerlink" title="Restful风格Web应用的特点"></a>Restful风格Web应用的特点</h2><p>1.使用url来描述资源 <br>2.使用http方法来描述行为 <br>3.使用http状态码来描述结果 <br>4.使用json来交互数据<br>Note: Restful只是一种风格，并不强制要求实现</p>
+<h2 id="编写第一个Restful-API"><a href="#编写第一个Restful-API" class="headerlink" title="编写第一个Restful API"></a>编写第一个Restful API</h2><ul>
+<li>搭建Web环境，这里我们使用MockMvc来模拟创建web环境<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserControllerTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> WebApplicationContext wac;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MockMvc mockMvc;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>这件就搭建好了模拟好的Web环境</p>
+<ul>
+<li>编写测试用的Controller</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/user/&#123;id:\\d+&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getInfo</span><span class="params">(@PathVariable(required = <span class="keyword">false</span>, name = <span class="string">"id"</span>)</span> Long id) </span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setId(<span class="number">1L</span>);</span><br><span class="line">    user.setUsername(<span class="string">"DorothyWang"</span>);</span><br><span class="line">    user.setPassword(<span class="string">"1234"</span>);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>GetMapping</strong>注解是RestApi中的一个重要的注解，它相当于 <code>@RequestMapping(value=&quot;targetUrl&quot;,method=&quot;RequestMethod.GET&quot;)</code>,与其相对应的注解还有<strong>PostMapping</strong>,<strong>DelateMapping</strong>,<strong>PutMapping</strong>,其原理都和GetMapping一样。</p>
+<ul>
+<li>编写针对Restful的测试用例</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f3</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    String user = mockMvc.perform(MockMvcRequestBuilders.get(<span class="string">"/user/1"</span>).contentType(MediaType.APPLICATION_JSON_UTF8))</span><br><span class="line">            .andExpect(MockMvcResultMatchers.status().isOk())</span><br><span class="line">            .andReturn().getResponse().getContentAsString();</span><br><span class="line"></span><br><span class="line">    System.err.println(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<strong>MockRequestBuilders</strong>来发起http请求,并设置请求的contentType,这里选择的是Json格式返回。andExcept()方法是设置期待的结果。andReturn()方法是用来获取返回的结果,并按照指定格式来处理返回结果。</p>
+<h3 id="使用注解申明Restful-API"><a href="#使用注解申明Restful-API" class="headerlink" title="使用注解申明Restful API"></a>使用注解申明Restful API</h3><h4 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h4><ul>
+<li><h3 id="在Restful-API-中传递参数"><a href="#在Restful-API-中传递参数" class="headerlink" title="在Restful API 中传递参数"></a>在Restful API 中传递参数</h3></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">springMVC Restful</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/30/使用springMVC开发Restful-API/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Mybatis的基本配置及使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -476,6 +600,10 @@ MathJax.Hub.Queue(function() {
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">springMVC Restful</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
