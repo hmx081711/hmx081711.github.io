@@ -161,20 +161,183 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/11/JavaWeb杂谈/">JavaWeb杂谈</a>
+      <a class="article-title" href="/2019/10/19/JavaWeb杂谈/">JavaWeb杂谈</a>
     </h1>
   
 
         
-        <a href="/2019/10/11/JavaWeb杂谈/" class="archive-article-date">
-  	<time datetime="2019-10-11T07:47:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-11</time>
+        <a href="/2019/10/19/JavaWeb杂谈/" class="archive-article-date">
+  	<time datetime="2019-10-19T08:30:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="浅聊Http"><a href="#浅聊Http" class="headerlink" title="浅聊Http"></a>浅聊Http</h1><h1 id="tomcat目录结构"><a href="#tomcat目录结构" class="headerlink" title="tomcat目录结构"></a>tomcat目录结构</h1><h1 id="什么是JavaWeb"><a href="#什么是JavaWeb" class="headerlink" title="什么是JavaWeb"></a>什么是JavaWeb</h1><h2 id="JavaWeb的简介"><a href="#JavaWeb的简介" class="headerlink" title="JavaWeb的简介"></a>JavaWeb的简介</h2><h2 id="JavaWeb的目录结构"><a href="#JavaWeb的目录结构" class="headerlink" title="JavaWeb的目录结构"></a>JavaWeb的目录结构</h2><h2 id="创建JavaWeb项目"><a href="#创建JavaWeb项目" class="headerlink" title="创建JavaWeb项目"></a>创建JavaWeb项目</h2>
+        <h1 id="什么是Http"><a href="#什么是Http" class="headerlink" title="什么是Http"></a>什么是Http</h1><p>Http全称<strong>超文本传输协议</strong>，是应用层的协议,是一种基于请求和响应,无状态的协议。下面就从请求头和响应头来介绍HTTP。</p>
+<ol>
+<li>RequestHander</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">请求头字段</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Accept</td>
+<td align="left">用于告诉服务器，客户机支持的数据类型</td>
+</tr>
+<tr>
+<td align="left">Accept-Charset</td>
+<td align="left">用于告诉服务器，客户机采用的编码</td>
+</tr>
+<tr>
+<td align="left">Accept-Encoding</td>
+<td align="left">用于告诉服务器，客户机支持数据压缩格式</td>
+</tr>
+<tr>
+<td align="left">Accept-Language</td>
+<td align="left">客户机的语言环境</td>
+</tr>
+<tr>
+<td align="left">Host</td>
+<td align="left">客户机通过这个头告诉服务器，想访问的主机名</td>
+</tr>
+<tr>
+<td align="left">If-Modified-Since</td>
+<td align="left">客户机通过这个头告诉服务器，资源的缓存时间</td>
+</tr>
+<tr>
+<td align="left">Refer</td>
+<td align="left">客户机通过这个头告诉服务器，它是从哪个资源访问服务器的(防盗链)</td>
+</tr>
+<tr>
+<td align="left">User-Agent</td>
+<td align="left">客户机通过这个头告诉服务器，客户机的软件环境</td>
+</tr>
+<tr>
+<td align="left">Cookie</td>
+<td align="left">客户机通过这个头向服务器带数据</td>
+</tr>
+<tr>
+<td align="left">Connection</td>
+<td align="left">这个请求完了，是保持连接还是关闭</td>
+</tr>
+<tr>
+<td align="left">Range</td>
+<td align="left">断点下载</td>
+</tr>
+<tr>
+<td align="left">1. bytes=n1-n2,传输范围n1到n2字节</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">2. bytes=n-，传输web资源中第n个字节以后的所有内容</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">3. bytes=n,传输最后n个字节</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>ResponseHandler</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">响应头字段</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Server</td>
+<td align="left">服务器通过这个头，告诉浏览器服务器的类型</td>
+</tr>
+<tr>
+<td align="left">Content-Encoding</td>
+<td align="left">服务器通过这个头，数据的压缩格式 (相关java知识:GZIPOutputStream,包装流/底层流)</td>
+</tr>
+<tr>
+<td align="left">Content-Length</td>
+<td align="left">服务器通过这个头，告诉浏览器回送数据的长度</td>
+</tr>
+<tr>
+<td align="left">Content-Type</td>
+<td align="left">服务器通过这个头，告诉浏览器回送数据的类型</td>
+</tr>
+<tr>
+<td align="left">Last-Modified</td>
+<td align="left">服务器通过这个头，告诉浏览器当前资源的缓存时间</td>
+</tr>
+<tr>
+<td align="left">Refresh</td>
+<td align="left">服务器通过这个头，告诉浏览器隔多长时间刷新一次</td>
+</tr>
+<tr>
+<td align="left">Content-Disposition</td>
+<td align="left">服务器通过这个头，告诉浏览器以下载方式打开</td>
+</tr>
+<tr>
+<td align="left">Transfer-Encoding</td>
+<td align="left">服务器通过这个头，告诉浏览器数据的传送格式</td>
+</tr>
+<tr>
+<td align="left">Etag</td>
+<td align="left">缓存相关的头部，用于实时性要求高的系统</td>
+</tr>
+<tr>
+<td align="left">Expires</td>
+<td align="left">服务器通过这个头，告诉浏览器把回送的资源缓存多长时间，-1或0则不缓存</td>
+</tr>
+<tr>
+<td align="left">Cache-Control和Pragma:no-cache</td>
+<td align="left">服务器通过这两个头，也是控制浏览器不要缓存数据</td>
+</tr>
+<tr>
+<td align="left">Connection</td>
+<td align="left">断开连接/保持连接</td>
+</tr>
+<tr>
+<td align="left">Date</td>
+<td align="left">当前时间</td>
+</tr>
+<tr>
+<td align="left">Accept-Ranges</td>
+<td align="left">用来说明web服务器是否支持range。支持返回bytes;不支持返回none</td>
+</tr>
+<tr>
+<td align="left">Content-Range</td>
+<td align="left">制定了返回web资源的字节范围，格式：n1-n2/n_total</td>
+</tr>
+</tbody></table>
+<h1 id="tomcat简介"><a href="#tomcat简介" class="headerlink" title="tomcat简介"></a>tomcat简介</h1><p>Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta 项目中的一个核心项目，由Apache、Sun 和其他一些公司及个人共同开发而成。<font color="#dd0000">Tomcat服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器</font>，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。</p>
+<h2 id="tomcat的目录"><a href="#tomcat的目录" class="headerlink" title="tomcat的目录"></a>tomcat的目录</h2><ul>
+<li>bin : 包含了tomcat在各大平台上的运行启动/关闭文件</li>
+<li>conf: 包含了tomcat运行时的必要的一些配置文件,如server.xml</li>
+<li>work: 存放Jsp编译后产生的class文件</li>
+<li>webapps: web应用部署的文件夹</li>
+<li>lib: tomcat运行时必须的一些jar包</li>
+<li>logs: tomcat运行时的日志文件</li>
+<li>temp: tomcat在运行时的临时文件<h2 id="tomcat的配置"><a href="#tomcat的配置" class="headerlink" title="tomcat的配置"></a>tomcat的配置</h2>从<a href="http://tomcat.apache.org/" target="_blank" rel="noopener">apache-tomcat官网直接进行下载</a>,解压后不需要进行任何配置,进入bin,根据不同环境选择不同的文件，即可直接运行,默认的运行端口号为8080,如若要修改运行的端口号只要修改conf/server.xml即可实现</li>
+</ul>
+<h1 id="什么是JavaWeb"><a href="#什么是JavaWeb" class="headerlink" title="什么是JavaWeb"></a>什么是JavaWeb</h1><p>Java Web，是用Java技术来解决相关web互联网领域的技术总和。web包括：web服务器和web客户端两部分。Java在客户端的应用有java applet，不过使用得很少，Java在服务器端的应用非常的丰富，比如Servlet，JSP和第三方框架等等。Java技术对Web领域的发展注入了强大的动力。</p>
+<h2 id="创建JavaWeb项目"><a href="#创建JavaWeb项目" class="headerlink" title="创建JavaWeb项目"></a>创建JavaWeb项目</h2><ol>
+<li>打开IDEA,依次点击File/Project <br><img src="/.com//web%E9%A1%B9%E7%9B%AE01.png" alt="01"></li>
+<li>选择maven项目<br><img src="/.com//web%E9%A1%B9%E7%9B%AE02.png" alt="02"></li>
+<li>设置maven项目工程的坐标<br><img src="/.com//web%E9%A1%B9%E7%9B%AE03.png" alt="03"></li>
+<li>设置项目名,生成maven项目<br><img src="/.com//web%E9%A1%B9%E7%9B%AE04.png" alt="04"></li>
+<li>点击File/ProjectStruct<br><img src="/.com//web%E9%A1%B9%E7%9B%AE05.png" alt="05"></li>
+<li>选择Faces，Web 在弹出的选项框中选中当前项目<br><img src="/.com//web%E9%A1%B9%E7%9B%AE07.png" alt="06"></li>
+<li>设置web.xml的生成路径<br><img src="/.com//web%E9%A1%B9%E7%9B%AE.png" alt="07"></li>
+<li>设置web项目的路径<br><img src="/.com//web%E9%A1%B9%E7%9B%AE10.png" alt="08"></li>
+<li>完成后发现项目中生成了webapp的文件夹,至此web工程就搭建完了<br><img src="/.com//web%E9%A1%B9%E7%9B%AE11.png" alt="09"><h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><h3 id="什么是Servlet"><a href="#什么是Servlet" class="headerlink" title="什么是Servlet"></a>什么是Servlet</h3>简单来说Servlet就是运行在应用服务器上的程序,是处理客户端发来的Http请求的<br>工具。是连接浏览器和服务器的桥梁。<h3 id="编写第一个servlet程序"><a href="#编写第一个servlet程序" class="headerlink" title="编写第一个servlet程序"></a>编写第一个servlet程序</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="Jsp"><a href="#Jsp" class="headerlink" title="Jsp"></a>Jsp</h2><h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h2><h2 id="Listener"><a href="#Listener" class="headerlink" title="Listener"></a>Listener</h2>
       
 
       
@@ -191,10 +354,6 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">servlet</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">tomcat</a>
         		</li>
       		
@@ -205,7 +364,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/11/JavaWeb杂谈/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/10/19/JavaWeb杂谈/">展开全文 >></a>
         </p>
       
 
@@ -715,18 +874,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">servlet</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">springMVC</a>
               </li>
              
@@ -736,6 +883,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
             
             <div class="clearfix"></div>
