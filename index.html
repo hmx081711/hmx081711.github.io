@@ -325,19 +325,241 @@
 </ul>
 <h1 id="什么是JavaWeb"><a href="#什么是JavaWeb" class="headerlink" title="什么是JavaWeb"></a>什么是JavaWeb</h1><p>Java Web，是用Java技术来解决相关web互联网领域的技术总和。web包括：web服务器和web客户端两部分。Java在客户端的应用有java applet，不过使用得很少，Java在服务器端的应用非常的丰富，比如Servlet，JSP和第三方框架等等。Java技术对Web领域的发展注入了强大的动力。</p>
 <h2 id="创建JavaWeb项目"><a href="#创建JavaWeb项目" class="headerlink" title="创建JavaWeb项目"></a>创建JavaWeb项目</h2><ol>
-<li>打开IDEA,依次点击File/Project <br><img src="/.com//web%E9%A1%B9%E7%9B%AE01.png" alt="01"></li>
-<li>选择maven项目<br><img src="/.com//web%E9%A1%B9%E7%9B%AE02.png" alt="02"></li>
-<li>设置maven项目工程的坐标<br><img src="/.com//web%E9%A1%B9%E7%9B%AE03.png" alt="03"></li>
-<li>设置项目名,生成maven项目<br><img src="/.com//web%E9%A1%B9%E7%9B%AE04.png" alt="04"></li>
-<li>点击File/ProjectStruct<br><img src="/.com//web%E9%A1%B9%E7%9B%AE05.png" alt="05"></li>
-<li>选择Faces，Web 在弹出的选项框中选中当前项目<br><img src="/.com//web%E9%A1%B9%E7%9B%AE07.png" alt="06"></li>
-<li>设置web.xml的生成路径<br><img src="/.com//web%E9%A1%B9%E7%9B%AE.png" alt="07"></li>
-<li>设置web项目的路径<br><img src="/.com//web%E9%A1%B9%E7%9B%AE10.png" alt="08"></li>
-<li>完成后发现项目中生成了webapp的文件夹,至此web工程就搭建完了<br><img src="/.com//web%E9%A1%B9%E7%9B%AE11.png" alt="09"><h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><h3 id="什么是Servlet"><a href="#什么是Servlet" class="headerlink" title="什么是Servlet"></a>什么是Servlet</h3>简单来说Servlet就是运行在应用服务器上的程序,是处理客户端发来的Http请求的<br>工具。是连接浏览器和服务器的桥梁。<h3 id="编写第一个servlet程序"><a href="#编写第一个servlet程序" class="headerlink" title="编写第一个servlet程序"></a>编写第一个servlet程序</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<li>打开IDEA,依次点击File/Project <br><img src="/2019/10/19/JavaWeb杂谈/web%E9%A1%B9%E7%9B%AE01.png" alt="web项目01"></li>
+<li>选择maven项目<br><img src="/2019/10/19/JavaWeb杂谈/web%E9%A1%B9%E7%9B%AE02.png" alt="02"></li>
+<li>设置maven项目工程的坐标<br><img src="/2019/10/19/JavaWeb杂谈/web%E9%A1%B9%E7%9B%AE03.png" alt="03"></li>
+<li>设置项目名,生成maven项目<br><img src="/2019/10/19/JavaWeb杂谈/web%E9%A1%B9%E7%9B%AE04.png" alt="04"></li>
+<li>点击File/ProjectStruct<br><img src="/2019/10/19/JavaWeb杂谈/web%E9%A1%B9%E7%9B%AE05.png" alt="05"></li>
+<li>选择Faces，Web 在弹出的选项框中选中当前项目<br><img src="/2019/10/19/JavaWeb杂谈/web%E9%A1%B9%E7%9B%AE07.png" alt="06"></li>
+<li>设置web.xml的生成路径<br><img src="/2019/10/19/JavaWeb杂谈/web%E9%A1%B9%E7%9B%AE.png" alt="07"></li>
+<li>设置web项目的路径<br><img src="/2019/10/19/JavaWeb杂谈/web%E9%A1%B9%E7%9B%AE10.png" alt="08"></li>
+<li>完成后发现项目中生成了webapp的文件夹,至此web工程就搭建完了<br><img src="/2019/10/19/JavaWeb杂谈/web%E9%A1%B9%E7%9B%AE11.png" alt="09"><h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><h3 id="什么是Servlet"><a href="#什么是Servlet" class="headerlink" title="什么是Servlet"></a>什么是Servlet</h3>简单来说Servlet就是运行在应用服务器上的程序,是处理客户端发来的Http请求的工具。是连接浏览器和服务器的桥梁。<h3 id="编写第一个servlet程序"><a href="#编写第一个servlet程序" class="headerlink" title="编写第一个servlet程序"></a>编写第一个servlet程序</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstServlet</span> <span class="keyword">extends</span> <span class="title">GenericServlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        ServletOutputStream stream = servletResponse.getOutputStream();</span><br><span class="line">        stream.write(<span class="string">"Hello Servlet"</span>.getBytes(<span class="string">"UTF-8"</span>));</span><br><span class="line">        stream.write((<span class="keyword">this</span>.getServletContext().toString()+<span class="string">"\n"</span>).getBytes());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<h2 id="Jsp"><a href="#Jsp" class="headerlink" title="Jsp"></a>Jsp</h2><h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h2><h2 id="Listener"><a href="#Listener" class="headerlink" title="Listener"></a>Listener</h2>
+<p>一个类只要继承GenericServlet,并重写它的service()方法，它就是一个servlet类，我们可以通过 <em>response.getOutputStream()</em> 方法,向页面上输出一些资源,当然这并不是我们常见的写法,我们更为常见的写法为<font color="red">让一个类实现HttpServlet接口,实现它的<em>doGet()</em>,<em>doPost()</em> 方法</font>,如下例所示:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstServlet</span> <span class="keyword">implements</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(ServletRequest req,ServletResponse repo)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// the field to wtrite code when request is Get Request </span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(ServletRequest req,ServletResponse repo)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// the field to write code when request is  Post Request</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样还不不足以让Servlet在tomcat容器生效，我们还必须在web.xml中注册。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--servlet的名称--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello servlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--servlet的权限类名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.dorothy.servlet.FirstServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--配置Servlet映射--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--与上面的servlet-name一致--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello servlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--映射的url地址--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在Web3.0中我们还有一种更为常见的注册方法,那就是使用注解配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(name = <span class="string">"GetServlet"</span>,urlPatterns = <span class="string">"/get/encoding"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetRequestServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="comment">// the service handler</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Servlet中常见的对象"><a href="#Servlet中常见的对象" class="headerlink" title="Servlet中常见的对象"></a>Servlet中常见的对象</h3><ul>
+<li>ServletContext <br>Servlet的上下文对象,<strong>一个tomcat内的所有Servlet共享一个ServletContext对象,可以实现数据共享</strong>，应此ServletContext对象也被称为<font color="red">Context域对象</font>,作用范围为整个应用。<br>下面是ServletContext的常见用法:</li>
+</ul>
+<ol>
+<li><p>ServletContext也可以通过 <em>getResourceAsStream()</em> 方法，来加载配置文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InputStream inputStream = <span class="keyword">this</span>.getServletContext().getResourceAsStream(<span class="string">"/WEB-INF/classes/test.properties"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以通过ServletContext实现转发 <br><code>this.getServletContext().getRequestDispatcher(&quot;/the url&quot;).forword(req,res);</code></p>
+</li>
+<li><p>可以为web应用添加Filter，Listener</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//add a filter to Web Application</span></span><br><span class="line"><span class="keyword">this</span>.getServletRequest().addFilter();</span><br><span class="line"><span class="comment">//add a listener to Web Apllication</span></span><br><span class="line"><span class="keyword">this</span>.getServletRequest().addListener();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p>ServletConfig <br>Servlet的配置对象,可以通过web.xml中的<code>&lt;servlet&gt;</code>标签中<br><code>&lt;init-param&gt;</code>标签来配置Servlet,可以设置输出的字符集,和指定加载的配置文件</p>
+</li>
+<li><p>HttpServletRequest<br>HttpServletRequest是浏览器发过来的请求对象,它的主要作用是申请访问互联网上的某些资源或服务。我们可以通过Request对象获取请求的参数，方法，请求的URI等信息，还可以获取请求客户机的IP地址等信息，下面是具体的获取方法。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">方法名</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">getParameter(String s)</td>
+<td align="left">获取请求的参数</td>
+</tr>
+<tr>
+<td align="left">getRemoteAddr()</td>
+<td align="left">获取请求的客户机的IP地址</td>
+</tr>
+<tr>
+<td align="left">getRequestURI()</td>
+<td align="left">获取请求的URI</td>
+</tr>
+<tr>
+<td align="left">getMethod()</td>
+<td align="left">获取请求的方法</td>
+</tr>
+<tr>
+<td align="left">- HttpServletResponse</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">HttpServletResponse是服务器包装的要返回给客户端的响应对象，我们可以通过Response对象向页面上输出一些信息，还可以使用Request对象对页面实现重定向,</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">还可以设置响应的ContentType,字符编码等。下面是具体的获取方法。</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">方法名</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">getWriter()/getOutputStream()</td>
+<td align="left">获取页面输出的流对象</td>
+</tr>
+<tr>
+<td align="left">sendRedirect(String url)</td>
+<td align="left">重定向到指定页面</td>
+</tr>
+<tr>
+<td align="left">setContentType()</td>
+<td align="left">设置响应的内容类型</td>
+</tr>
+<tr>
+<td align="left">setCharacterEncoding()</td>
+<td align="left">设置响应的字符编码</td>
+</tr>
+<tr>
+<td align="left">setHeader(String s1,String s2)</td>
+<td align="left">设置响应头</td>
+</tr>
+</tbody></table>
+<h3 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h3><p>从servlet的方法init(),service(),destroy()来看servlet的生命周期大致分为<br><font color="red">创建,初始化,运行,销毁</font>四个部分，这四个中的三个状态分别对应着上述的三个方法。<br>NOTE:destroy()方法只会在移除Servlet容器的时候才会调用，并且只会调用一次。</p>
+<h2 id="Jsp"><a href="#Jsp" class="headerlink" title="Jsp"></a>Jsp</h2><h3 id="什么是Jsp"><a href="#什么是Jsp" class="headerlink" title="什么是Jsp"></a>什么是Jsp</h3><p>Jsp是一种动态网页技术，它和Servlet一样可以根据请求响应相关的HTML，XML页面给客户端，它支持在HTML页面中写Java代码,极大地拓展了Servlet。JSP首次编译时会生成Servlet的.java,.class文件存放在tomcat的work目录下,可以说JSP是一种特殊的Servlet。</p>
+<h3 id="Jsp的渲染过程"><a href="#Jsp的渲染过程" class="headerlink" title="Jsp的渲染过程"></a>Jsp的渲染过程</h3><p>这个问题我们只要进入tomcat的work目录下一看究竟就知道怎么回事了<br><img src="/2019/10/19/JavaWeb杂谈/JSP01.png" alt="JSP01"><br>这是我事先准备编译好的的JSP文件,我们可以发现HTML语句被<code>out.write()</code>语句渲染到了页面上的,这个out是什么呢?，其实它是Jsp的9大内置对象之一，接下来会详细介绍。</p>
+<h3 id="JSP指令"><a href="#JSP指令" class="headerlink" title="JSP指令"></a>JSP指令</h3><p>Jsp的指令主要有三个</p>
+<ul>
+<li>page指令 <br>&lt;%@ page %&gt; 这个指令主要是用来设置jsp页面的信息，例如字符编码，ContentType</li>
+<li>include指令 <br>&lt;%@ include %&gt;<br>这个指令主要是用来引用其他的jsp页面的,一般来说是页头，页脚。</li>
+<li>tablib指令<br>这个指令主要是用来引用一些三方的标签库。</li>
+</ul>
+<h3 id="JSP的动作标签"><a href="#JSP的动作标签" class="headerlink" title="JSP的动作标签"></a>JSP的动作标签</h3><ul>
+<li>&lt;% %&gt; <br>可以在里面写Java代码，可以嵌套使用</li>
+<li>&lt;%= %&gt; <br>可以计算一些表达式的值,不需要加;号</li>
+<li>&lt;%@ %&gt; <br>引用JSP指令</li>
+</ul>
+<h3 id="JSP的9大内置对象"><a href="#JSP的9大内置对象" class="headerlink" title="JSP的9大内置对象"></a>JSP的9大内置对象</h3><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">用途</th>
+<th align="center">Servlet中的对应</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">out</td>
+<td align="center">向页面输出一些信息</td>
+<td align="center">response.getWrite()</td>
+</tr>
+<tr>
+<td align="center">request</td>
+<td align="center">用户的请求</td>
+<td align="center">HttpServletRequest对象</td>
+</tr>
+<tr>
+<td align="center">response</td>
+<td align="center">服务器的响应</td>
+<td align="center">HttpServletResponse对象</td>
+</tr>
+<tr>
+<td align="center">session</td>
+<td align="center">获取session域</td>
+<td align="center">session</td>
+</tr>
+<tr>
+<td align="center">pageContext</td>
+<td align="center">获取其他8大内置对象</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">page</td>
+<td align="center">整个Jsp页面</td>
+<td align="center">this</td>
+</tr>
+<tr>
+<td align="center">exception</td>
+<td align="center">jsp页面异常,只有该页面被申明为<strong>错误页面</strong>时才会显示</td>
+<td align="center">Throwable</td>
+</tr>
+<tr>
+<td align="center">config</td>
+<td align="center">jsp的配置信息</td>
+<td align="center">contextConfig</td>
+</tr>
+<tr>
+<td align="center">application</td>
+<td align="center">整个应用</td>
+<td align="center">ServletContext</td>
+</tr>
+</tbody></table>
+<h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h2><h3 id="什么是Filter"><a href="#什么是Filter" class="headerlink" title="什么是Filter"></a>什么是Filter</h3><p>Filter又称<strong>过滤器</strong>,是JavaWeb一种很重要的技术,开发者可以通过Filter对Web服务器上的资源进行管理，权限控制等操作。</p>
+<h3 id="Filter的工作流程"><a href="#Filter的工作流程" class="headerlink" title="Filter的工作流程"></a>Filter的工作流程</h3><p><img src="/2019/10/19/JavaWeb杂谈/Filter01.png" alt="Filter01"><br>我们可以看到web浏览器向Web服务器发送请求,请求会通过filter拦截匹配的url进行验证,验证通过filter会调用 <em>filterChain.dofilter()</em> 进行放行,若该web容器内没有其他匹配的filter的话,就会访问web资源,并包装response对象返回，否则将去往下一个filter继续进行验证,当所有的filter都通过时,才能访问资源。</p>
+<h3 id="第一个Filter的程序"><a href="#第一个Filter的程序" class="headerlink" title="第一个Filter的程序"></a>第一个Filter的程序</h3><p>要将一个类声明为filter很简单,只需要实现HttpFilter接或继承GenericFilter就行了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstFilter</span> <span class="keyword">extends</span> <span class="title">GenericFilter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.init();</span><br><span class="line">        System.out.println(<span class="string">"Filter 启动"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse,</span></span></span><br><span class="line"><span class="function"><span class="params">                         FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        <span class="comment">// pre Handler</span></span><br><span class="line">        System.out.println(<span class="string">"过滤操作之前处理"</span>);</span><br><span class="line">        filterChain.doFilter(servletRequest,servletResponse);</span><br><span class="line">        <span class="comment">// post Handler</span></span><br><span class="line">        System.out.println(<span class="string">"过滤操作之后处理"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Filter被销毁了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>和Servlet类似,Filter也需要注册才能生效</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--Filter注册配置--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>firstFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.dorothy.filter.FirstFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>firstFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--设置要拦截的servlet名字，可以设置多个--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello servlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--设置Filter要拦截的资源被Servlet调用的方式，默认是REQUEST--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dispatcher</span>&gt;</span>REQUEST<span class="tag">&lt;/<span class="name">dispatcher</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当然也能使用注解进行注册</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebFilter</span>(filterName = <span class="string">"secondFilter"</span>,servletNames = <span class="string">"hello servlet"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondFilter</span> <span class="keyword">extends</span> <span class="title">GenericFilter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Filter的生命周期"><a href="#Filter的生命周期" class="headerlink" title="Filter的生命周期"></a>Filter的生命周期</h3><p>Filter的生命周期和Servlet相似,分为四部分<font color="red">创建,初始化,拦截,销毁</font>,由Web容器管理,当应用启动时创建Filter对象,并调用init()方法进行初始化,<strong>初始化操作仅仅进行一次</strong>，当有请求来时进行拦截,当web容器调用destory()<br>方法时进行销毁,”销毁操作仅进行一次”。</p>
+<h2 id="Listener"><a href="#Listener" class="headerlink" title="Listener"></a>Listener</h2><h3 id="什么是监听器"><a href="#什么是监听器" class="headerlink" title="什么是监听器"></a>什么是监听器</h3><p>Listener又名<strong>监听器</strong>,是JavaWeb技术重要的一环,主要用来监听Web应用的事件,行为。</p>
+<h3 id="监听器的分类"><a href="#监听器的分类" class="headerlink" title="监听器的分类"></a>监听器的分类</h3><ul>
+<li>按域对象分 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="right">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ServletContextListener</td>
+<td align="right">监听Context对象的创建和销毁</td>
+</tr>
+<tr>
+<td align="left">HttpSessionListener</td>
+<td align="right">监听Session对象的创建和销毁</td>
+</tr>
+<tr>
+<td align="left">ServletRequestListener</td>
+<td align="right">监听Request对象的创建和销毁</td>
+</tr>
+</tbody></table>
+<ul>
+<li>属性监听器</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="right">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ServletContextAttributeListener</td>
+<td align="right">监听Context域属性的创建,销毁，和更新</td>
+</tr>
+<tr>
+<td align="left">HttpSessionAttributeListener</td>
+<td align="right">监听Session对象的属性的创建,销毁，和更新</td>
+</tr>
+<tr>
+<td align="left">ServletRequestAttributeListener</td>
+<td align="right">监听Request对象的属性的创建,销毁，和更新</td>
+</tr>
+</tbody></table>
+<ul>
+<li>HttpSessionBindingListener <br>这个监听器和其他的监听器不同,它是声明在实体类上的，当Session域绑定或解绑该对象的时候，该监听器触发。</li>
+</ul>
+
       
 
       
