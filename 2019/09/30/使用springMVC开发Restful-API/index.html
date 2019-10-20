@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Dorothy Huang的博客">
 <meta property="og:description" content="第一印象   操作 传统web应用 Rest风格web应用    查询 localhost:8080/query?username=”小明” localhost:8080/query/1   创建 localhost:8080/create?username=”小明”&amp;amp;age=16… localhost:8080/create/user   修改 localhost:8080/update">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-10T07:25:34.907Z">
+<meta property="og:updated_time" content="2019-10-20T10:26:27.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用springMVC开发Restful API">
 <meta name="twitter:description" content="第一印象   操作 传统web应用 Rest风格web应用    查询 localhost:8080/query?username=”小明” localhost:8080/query/1   创建 localhost:8080/create?username=”小明”&amp;amp;age=16… localhost:8080/create/user   修改 localhost:8080/update">
@@ -230,6 +230,7 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f3</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    String user = mockMvc.perform(MockMvcRequestBuilders.get(<span class="string">"/user/1"</span>).contentType(MediaType.APPLICATION_JSON_UTF8))</span><br><span class="line">            .andExpect(MockMvcResultMatchers.status().isOk())</span><br><span class="line">            .andReturn().getResponse().getContentAsString();</span><br><span class="line"></span><br><span class="line">    System.err.println(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
 <p>使用<strong>MockRequestBuilders</strong>来发起http请求,并设置请求的contentType,这里选择的是Json格式返回。andExcept()方法是设置期待的结果。andReturn()方法是用来获取返回的结果,并按照指定格式来处理返回结果。</p>
 <h3 id="使用注解申明Restful-API"><a href="#使用注解申明Restful-API" class="headerlink" title="使用注解申明Restful API"></a>使用注解申明Restful API</h3><h4 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h4><ul>
 <li>@RestController <br>标识该应用是Rest风格的，标识为此注解的类中的所有Http方法若要返回Json数据时,不必再为它标注@ReponseBody注解</li>
@@ -582,15 +583,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JavaWeb</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
               </li>
             
             <div class="clearfix"></div>
